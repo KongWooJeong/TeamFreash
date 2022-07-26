@@ -1,6 +1,16 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 
 import styled from "styled-components";
+
+import image01 from "../assets/main_images01.jpeg";
+import image02 from "../assets/main_images02.jpeg";
+import image03 from "../assets/main_images03.jpeg";
+
+const imageList = [image01, image02, image03];
+
+interface Test {
+  currentIndex: number;
+}
 
 const ImageWrapper = styled.div`
   position: relative;
@@ -38,9 +48,109 @@ const ImageWrapper = styled.div`
     line-height: 25px;
     color: #fff;
   }
+
+  .caroucel {
+    overflow: hidden;
+  }
+
+  .inner {
+    white-space: nowrap;
+    transition: transform 0.8s ease;
+    transform: translateX(-200%);
+  }
+
+  .caroucel-item {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+
+    img {
+      width: 100%;
+      height: 100vh;
+      object-fit: cover;
+    }
+  }
+
+  .slide-page-index {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-left: -617px;
+    font-size: 0;
+    z-index: 90;
+    margin-top: 120px;
+
+    .item {
+      display: inline-block;
+      margin: 0 3px;
+
+      a {
+        display: block;
+        width: 45px;
+        height: 7px;
+        font-size: 0;
+        float: left;
+        overflow: hidden;
+        background: #fff;
+        border-radius: 100px;
+      }
+    }
+
+    a.active {
+      background: #005cdf;
+    }
+  }
+`;
+
+const CaroucelWrapper = styled.div<Test>`
+  .caroucel {
+    overflow: hidden;
+  }
+
+  .inner {
+    white-space: nowrap;
+    transition: transform 0.8s ease;
+    transform: ${(props: Test) => `translateX(${-100 * props.currentIndex}%)`};
+  }
+
+  .caroucel-item {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+
+    img {
+      width: 100%;
+      height: 100vh;
+      object-fit: cover;
+    }
+  }
 `;
 
 const Image: React.FC = () => {
+  const [activeIndex, setActiveIndex] = useState(0);
+
+  useEffect(() => {
+    const intervalId = setInterval(() => {
+      setActiveIndex((prevState) => {
+        if (prevState === imageList.length - 1) {
+          return 0;
+        }
+
+        return prevState + 1;
+      });
+    }, 5000);
+
+    return () => {
+      clearInterval(intervalId);
+    };
+  }, []);
+
+  function handleClick(index: number) {
+    setActiveIndex(index);
+  }
+
   return (
     <ImageWrapper>
       <div className="image-text-wrapper">
@@ -53,6 +163,35 @@ const Image: React.FC = () => {
           팀프레시는 신선함을 이어 풍요로운 세상을 만듭니다.
         </div>
       </div>
+      <CaroucelWrapper currentIndex={activeIndex}>
+        <div className="caroucel">
+          <div className="inner">
+            {imageList.map((value, index) => {
+              return (
+                <div key={index} className="caroucel-item">
+                  <img src={value} />
+                </div>
+              );
+            })}
+          </div>
+        </div>
+      </CaroucelWrapper>
+      <ul className="slide-page-index">
+        {imageList.map((_, index) => {
+          return (
+            <li key={index} className="item">
+              <a
+                className={activeIndex === index ? "active" : ""}
+                onClick={() => {
+                  handleClick(index);
+                }}
+              >
+                {index}
+              </a>
+            </li>
+          );
+        })}
+      </ul>
     </ImageWrapper>
   );
 };
