@@ -16,7 +16,9 @@ const ImageWrapper = styled.div`
   position: relative;
   width: 100%;
   height: 100vh;
-  min-width: 1210px;
+  min-width: 1150px;
+  max-width: 2000px;
+  min-height: ;
   overflow: hidden;
   background-color: black;
 
@@ -63,11 +65,10 @@ const ImageWrapper = styled.div`
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    height: 100%;
 
     img {
       width: 100%;
-      height: 100vh;
+      min-height: 1000px;
       object-fit: cover;
     }
   }
@@ -118,7 +119,7 @@ const CaroucelWrapper = styled.div<Test>`
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    height: 100%;
+    height: 100vh;
 
     img {
       width: 100%;
@@ -140,7 +141,7 @@ const Image: React.FC = () => {
 
         return prevState + 1;
       });
-    }, 5000);
+    }, 3000);
 
     return () => {
       clearInterval(intervalId);
