@@ -1,14 +1,11 @@
 import React from "react";
 
-import styled from "styled-components";
-
 import Image from "../components/Image";
 import Introduce from "../components/Introduce";
-import Business from "../components/Buisiness";
+import Business from "../components/Business";
 import Service from "../components/Service";
 import Point from "../components/Point";
-import Link from "../components/LInk";
-import Footer from "../components/Footer";
+import Link from "../components/Link";
 
 const Main: React.FC = () => {
   return (
@@ -19,7 +16,6 @@ const Main: React.FC = () => {
       <Service />
       <Point />
       <Link />
-      <Footer />
     </>
   );
 };
