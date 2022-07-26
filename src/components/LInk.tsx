@@ -1,9 +1,33 @@
-import React from "react";
+import React, { useState } from "react";
 
 import styled from "styled-components";
 
 import arrowicon from "../assets/arrowicon2.png";
 import mainLinkImage01 from "../assets/main_linkimg01.jpeg";
+import mainLinkImage02 from "../assets/main_linkimg02.jpeg";
+import mainLinkImage03 from "../assets/main_linkimg03.jpeg";
+
+interface Info {
+  [key: string]: {
+    name: string;
+    image: string;
+  };
+}
+
+const info: Info = {
+  news: {
+    name: "News",
+    image: mainLinkImage01,
+  },
+  recruit: {
+    name: "Recruit",
+    image: mainLinkImage02,
+  },
+  imfStory: {
+    name: "Timf Strory",
+    image: mainLinkImage03,
+  },
+};
 
 const LinkWrapper = styled.div`
   position: relative;
@@ -12,13 +36,29 @@ const LinkWrapper = styled.div`
   padding: 150px 0;
 
   * {
-    box-sizing: border-box;
+    transition: all 0.4s ease;
   }
 
   .link-container {
     width: 1210px;
     margin: 0 auto;
     padding: 0 30px;
+
+    .contents.active {
+      .text {
+        .title:before {
+          opacity: 1;
+        }
+
+        .button {
+          opacity: 1;
+        }
+      }
+
+      .image {
+        opacity: 1;
+      }
+    }
 
     .contents {
       position: relative;
@@ -64,11 +104,13 @@ const LinkWrapper = styled.div`
         }
 
         .button {
+          display: flex;
+          align-items: center;
+          justify-content: center;
           width: 40px;
           height: 40px;
           border: 1px solid #fff;
           border-radius: 100%;
-          padding: 15px 0 0 0;
           margin: 280px auto 0;
           opacity: 0;
 
@@ -84,18 +126,42 @@ const LinkWrapper = styled.div`
         width: 100%;
         height: 100%;
         opacity: 0.4;
-        background: url(${mainLinkImage01}) no-repeat center;
-        background-size: cover;
       }
     }
   }
 `;
 
 const Link: React.FC = () => {
+  const [selectedMenu, setSelectedMenu] = useState<string>("");
+
   return (
     <LinkWrapper>
       <div className="link-container">
-        <div className="contents">
+        {Object.keys(info).map((value, index) => {
+          return (
+            <div
+              key={index}
+              className={
+                value === selectedMenu ? "contents active" : "contents"
+              }
+              onMouseOver={() => {
+                setSelectedMenu(value);
+              }}
+              onMouseOut={() => {
+                setSelectedMenu("");
+              }}
+            >
+              <div className="text">
+                <div className="title">{info[value].name}</div>
+                <div className="button">
+                  <img src={arrowicon} />
+                </div>
+              </div>
+              <img className="image" src={info[value].image} />
+            </div>
+          );
+        })}
+        {/* <div className="contents">
           <div className="text">
             <div className="title">News</div>
             <div className="button">
@@ -113,7 +179,7 @@ const Link: React.FC = () => {
           </div>
           <div className="image"></div>
         </div>
-        <div className="contents">
+        <div className="contents active">
           <div className="text">
             <div className="title">Timf Stroy</div>
             <div className="button">
@@ -121,7 +187,7 @@ const Link: React.FC = () => {
             </div>
           </div>
           <div className="image"></div>
-        </div>
+        </div> */}
       </div>
     </LinkWrapper>
   );
