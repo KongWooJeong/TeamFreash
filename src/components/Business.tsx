@@ -3,6 +3,13 @@ import React from "react";
 import styled from "styled-components";
 
 import icon01 from "../assets/icon01.png";
+import icon02 from "../assets/icon02.png";
+import icon03 from "../assets/icon03.png";
+import icon04 from "../assets/icon04.png";
+import icon05 from "../assets/icon05.png";
+import icon06 from "../assets/icon06.png";
+import icon07 from "../assets/icon07.png";
+import icon08 from "../assets/icon08.png";
 
 const BusinessWrapper = styled.div`
   position: relative;
@@ -211,17 +218,17 @@ const Business: React.FC = () => {
               새벽배송
             </li>
             <li>
-              <img src={icon01} />
+              <img src={icon02} />
               <br />
               보관
             </li>
             <li>
-              <img src={icon01} />
+              <img src={icon03} />
               <br />
               출고
             </li>
             <li>
-              <img src={icon01} />
+              <img src={icon04} />
               <br />
               화물주선
             </li>
@@ -231,24 +238,24 @@ const Business: React.FC = () => {
         <div className="process">
           <ul>
             <li>
-              <img src={icon01} />
+              <img src={icon05} />
               <br />
-              고객
+              식자재 유통
             </li>
             <li>
-              <img src={icon01} />
+              <img src={icon06} />
+              <br />
+              프랜차이즈
+            </li>
+            <li>
+              <img src={icon07} />
               <br />
               보험
             </li>
             <li>
-              <img src={icon01} />
+              <img src={icon08} />
               <br />
-              프래차이즈
-            </li>
-            <li>
-              <img src={icon01} />
-              <br />
-              식자제 유통
+              고객
             </li>
           </ul>
         </div>
@@ -256,7 +263,7 @@ const Business: React.FC = () => {
       </div>
       <div className="movie">
         <iframe
-          src="//player.vimeo.com/video/700346662?quality=1080p&amp;autopause=0&amp;playsinline=1&amp;autoplay=1&amp;loop=1&amp;background=1"
+          src="https://player.vimeo.com/video/700346662?quality=1080p&autopause=0&playsinline=1&autoplay=1&loop=1&background=1"
           allow="autoplay"
           width="100%"
           height="100%"
