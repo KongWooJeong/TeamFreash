@@ -5,19 +5,19 @@ import styled from "styled-components";
 import logo from "../assets/logo_Teamfresh.png";
 
 const HeaderWrapper = styled.div`
-  position: fixed;
   display: table;
+  position: fixed;
   top: 0;
   left: 0;
+  z-index: 100;
   width: 100%;
   min-width: 1210px;
   padding: 0;
-  text-align: center;
-  z-index: 100;
-  transition: all 0.2s ease;
   border-bottom: 1px solid rgba(255, 255, 255, 0.1);
   background: rgba(2, 21, 48, 0.9);
   backdrop-filter: blur(2px);
+  text-align: center;
+  transition: all 0.2s ease;
 
   .header {
     width: 1210px;
@@ -67,13 +67,13 @@ const HeaderWrapper = styled.div`
         margin: 0 20px;
 
         a {
+          padding: 5px 0;
           font-family: "Pretendard";
           font-weight: 500;
           font-size: 18px;
           line-height: 30px;
           color: #ffffff;
           text-decoration: none;
-          padding: 5px 0;
           cursor: pointer;
         }
       }

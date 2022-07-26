@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { Fragment, useState } from "react";
 
 import styled from "styled-components";
 
@@ -18,6 +18,7 @@ interface Info {
     title: string[];
     comment: string[];
     image: string;
+    icon: string;
   };
 }
 
@@ -31,6 +32,7 @@ const businessInfo: Info = {
       "이커머스 전문 물류 서비스를 제공받으세요.",
     ],
     image: business01,
+    icon: icon03,
   },
   circulation: {
     name: "유통",
@@ -41,6 +43,7 @@ const businessInfo: Info = {
       "자체 물류 역량으로 상품을 안정적으로 공급하고 있습니다.",
     ],
     image: business02,
+    icon: icon04,
   },
   franchise: {
     name: "프렌차이즈",
@@ -52,6 +55,7 @@ const businessInfo: Info = {
       "가맹 패키지를 제안해드립니다.",
     ],
     image: business03,
+    icon: icon06,
   },
   insurance: {
     name: "보험",
@@ -66,6 +70,7 @@ const businessInfo: Info = {
       "기업 맞춤형, 최적의 보험 상품을 추천받아보세요.",
     ],
     image: business04,
+    icon: icon07,
   },
 };
 
@@ -78,7 +83,6 @@ const ServiceWrapper = styled.div`
 
   .title {
     width: 100%;
-    font-family: "Pretendard";
     text-align: center;
     font-weight: 700;
     font-size: 55px;
@@ -97,7 +101,6 @@ const ServiceWrapper = styled.div`
     width: 1210px;
     margin: 50px auto 0;
     padding: 0 30px;
-    box-sizing: border-box;
 
     .service-tab {
       position: absolute;
@@ -106,9 +109,8 @@ const ServiceWrapper = styled.div`
       display: table;
       float: left;
       width: 45%;
-      background: #f5f5f5;
       padding: 0;
-      box-sizing: border-box;
+      background: #f5f5f5;
       z-index: 1;
 
       ul {
@@ -128,8 +130,10 @@ const ServiceWrapper = styled.div`
 
         li {
           position: relative;
+          list-style: none;
           float: left;
           width: 25%;
+          padding: 75px 0 15px;
           text-align: center;
           font-family: "Pretendard";
           font-weight: 300;
@@ -137,9 +141,6 @@ const ServiceWrapper = styled.div`
           line-height: 40px;
           color: #000;
           cursor: pointer;
-          padding: 75px 0 15px;
-          box-sizing: border-box;
-          list-style: none;
 
           img {
             position: absolute;
@@ -153,11 +154,11 @@ const ServiceWrapper = styled.div`
     }
 
     .service-contents {
-      clear: left;
       float: left;
       position: relative;
       width: 100%;
       margin: 0 auto 0;
+      clear: left;
 
       .text-box {
         float: left;
@@ -165,7 +166,6 @@ const ServiceWrapper = styled.div`
         margin-top: 230px;
 
         .title {
-          font-family: "Pretendard";
           text-align: left;
           font-weight: 700;
           font-size: 35px;
@@ -174,7 +174,6 @@ const ServiceWrapper = styled.div`
         }
 
         .comment {
-          font-family: "Pretendard";
           text-align: left;
           font-weight: 300;
           font-size: 18px;
@@ -208,7 +207,7 @@ const Service: React.FC = () => {
   const [selectedBusiness, setSeletedBusiness] =
     useState<string>("distribution");
 
-  function handleClick(businessType: string) {
+  function handleBusinessTabClick(businessType: string) {
     setSeletedBusiness(businessType);
   }
 
@@ -227,9 +226,9 @@ const Service: React.FC = () => {
                 <li
                   key={index}
                   className={selectedBusiness === value ? "on" : ""}
-                  onClick={() => handleClick(value)}
+                  onClick={() => handleBusinessTabClick(value)}
                 >
-                  <img src={icon03} />
+                  <img src={businessInfo[value].icon} />
                   {businessInfo[value].name}
                 </li>
               );
@@ -245,10 +244,10 @@ const Service: React.FC = () => {
                 }
 
                 return (
-                  <>
+                  <Fragment key={value}>
                     {value}
                     <br />
-                  </>
+                  </Fragment>
                 );
               })}
             </div>
@@ -262,10 +261,10 @@ const Service: React.FC = () => {
                 }
 
                 return (
-                  <>
+                  <Fragment key={value}>
                     {value}
                     <br />
-                  </>
+                  </Fragment>
                 );
               })}
             </div>

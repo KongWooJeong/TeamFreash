@@ -65,8 +65,8 @@ const PointWrapper = styled.div`
 
     .title {
       width: 100%;
-      font-family: "Pretendard";
       text-align: center;
+      font-family: "Pretendard";
       font-weight: 700;
       font-size: 55px;
       line-height: 45px;
@@ -103,19 +103,17 @@ const PointWrapper = styled.div`
           position: absolute;
           bottom: 0;
           left: 0;
-          width: 100%;
-          padding: 20px;
           z-index: 1;
+          width: 100%;
+          padding: 40px 40px 30px 40px;
           background: linear-gradient(
             to bottom,
             rgba(0, 0, 0, 0),
             rgba(0, 0, 0, 1)
           );
-          padding: 40px 40px 30px 40px;
 
           .title {
             width: 100%;
-            font-family: "Pretendard";
             font-size: 23px;
             font-weight: 500;
             line-height: 25px;
@@ -123,18 +121,17 @@ const PointWrapper = styled.div`
           }
 
           .comments {
-            font-family: "Pretendard";
+            width: 0;
+            height: 0;
+            border-top: 1px solid #fff;
+            padding: 10px 0 0 0;
+            margin: 10px 0 0 0;
             font-size: 17px;
             font-weight: 300;
             line-height: 20px;
             color: #fff;
-            border-top: 1px solid #fff;
-            padding: 10px 0 0 0;
-            margin: 10px 0 0 0;
             overflow: hidden;
             opacity: 0;
-            width: 0;
-            height: 0;
           }
         }
       }
@@ -194,7 +191,7 @@ const Point: React.FC = () => {
                       }
 
                       return (
-                        <Fragment key={index}>
+                        <Fragment key={value}>
                           {value}
                           <br />
                         </Fragment>

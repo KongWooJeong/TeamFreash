@@ -8,13 +8,13 @@ const IntroduceWrapper = styled.div`
   width: 100%;
   padding: 200px 0;
   background: rgba(0, 0, 0, 0.03);
-  overflow: hidden;
   font-family: "Pretendard";
   text-align: center;
   font-weight: 600;
   font-size: 30px;
   line-height: 35px;
   color: #000;
+  overflow: hidden;
 `;
 
 const Introduce: React.FC = () => {

@@ -79,16 +79,14 @@ const FooterWrapper = styled.div`
           float: left;
           width: 40px;
           height: 40px;
-          text-align: center;
-          background: rgba(0, 0, 0, 0.4);
-          border-radius: 100%;
-          overflow: hidden;
           padding: 6px 0 0 0;
           margin: 0 10px 0 0;
+          background: rgba(0, 0, 0, 0.4);
+          border-radius: 100%;
           box-sizing: border-box;
+          overflow: hidden;
+          text-align: center;
           cursor: pointer;
-          transition: all 0.2s ease;
-          -webkit-transition: all 0.2s ease;
 
           i {
             color: #fff;

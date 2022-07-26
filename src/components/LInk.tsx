@@ -99,8 +99,6 @@ const LinkWrapper = styled.div`
           background: #fff;
           content: "";
           opacity: 0;
-          transition: all 0.2s ease;
-          -webkit-transition: all 0.2s ease;
         }
 
         .button {
@@ -137,10 +135,10 @@ const Link: React.FC = () => {
   return (
     <LinkWrapper>
       <div className="link-container">
-        {Object.keys(info).map((value, index) => {
+        {Object.keys(info).map((value) => {
           return (
             <div
-              key={index}
+              key={value}
               className={
                 value === selectedMenu ? "contents active" : "contents"
               }
@@ -161,33 +159,6 @@ const Link: React.FC = () => {
             </div>
           );
         })}
-        {/* <div className="contents">
-          <div className="text">
-            <div className="title">News</div>
-            <div className="button">
-              <img src={arrowicon} />
-            </div>
-          </div>
-          <div className="image"></div>
-        </div>
-        <div className="contents">
-          <div className="text">
-            <div className="title">Recruit</div>
-            <div className="button">
-              <img src={arrowicon} />
-            </div>
-          </div>
-          <div className="image"></div>
-        </div>
-        <div className="contents active">
-          <div className="text">
-            <div className="title">Timf Stroy</div>
-            <div className="button">
-              <img src={arrowicon} />
-            </div>
-          </div>
-          <div className="image"></div>
-        </div> */}
       </div>
     </LinkWrapper>
   );

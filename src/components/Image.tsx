@@ -18,18 +18,17 @@ const ImageWrapper = styled.div`
   height: 100vh;
   min-width: 1150px;
   max-width: 2000px;
-  min-height: ;
-  overflow: hidden;
   background-color: black;
+  overflow: hidden;
 
   .image-text-wrapper {
     position: absolute;
     top: 50%;
     left: 50%;
-    text-align: left;
     z-index: 20;
     margin-left: -575px;
     margin-top: -150px;
+    text-align: left;
   }
 
   .image-title {
@@ -59,18 +58,6 @@ const ImageWrapper = styled.div`
     white-space: nowrap;
     transition: transform 0.8s ease;
     transform: translateX(-200%);
-  }
-
-  .caroucel-item {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-
-    img {
-      width: 100%;
-      min-height: 1000px;
-      object-fit: cover;
-    }
   }
 
   .slide-page-index {
@@ -123,7 +110,7 @@ const CaroucelWrapper = styled.div<Test>`
 
     img {
       width: 100%;
-      height: 100vh;
+      min-height: 1000px;
       object-fit: cover;
     }
   }
@@ -148,7 +135,7 @@ const Image: React.FC = () => {
     };
   }, []);
 
-  function handleClick(index: number) {
+  function handleImageTabClick(index: number) {
     setActiveIndex(index);
   }
 
@@ -167,9 +154,9 @@ const Image: React.FC = () => {
       <CaroucelWrapper currentIndex={activeIndex}>
         <div className="caroucel">
           <div className="inner">
-            {imageList.map((value, index) => {
+            {imageList.map((value) => {
               return (
-                <div key={index} className="caroucel-item">
+                <div key={value} className="caroucel-item">
                   <img src={value} />
                 </div>
               );
@@ -178,13 +165,13 @@ const Image: React.FC = () => {
         </div>
       </CaroucelWrapper>
       <ul className="slide-page-index">
-        {imageList.map((_, index) => {
+        {imageList.map((value, index) => {
           return (
-            <li key={index} className="item">
+            <li key={value} className="item">
               <a
                 className={activeIndex === index ? "active" : ""}
                 onClick={() => {
-                  handleClick(index);
+                  handleImageTabClick(index);
                 }}
               >
                 {index}
