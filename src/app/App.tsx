@@ -1,9 +1,14 @@
-import React from "react";
+import React, { useState } from "react";
 
 import styled, { createGlobalStyle } from "styled-components";
 
 import Layout from "../components/Layout";
 import Main from "../pages/Main";
+import DeliveryAreaSearch from "../pages/DeliveryAreaSearch";
+
+interface PageInfo {
+  [key: string]: React.ReactElement;
+}
 
 const GlobalStyle = createGlobalStyle`
   * {
@@ -19,15 +24,34 @@ const Wrapper = styled.div`
   min-width: 1210px;
   max-width: 2000px;
   margin: 0 auto;
+
+  .empty-page {
+    height: 100vh;
+  }
 `;
 
+const pageInfo: PageInfo = {
+  main: <Main />,
+  deliveryAreaSearch: <DeliveryAreaSearch />,
+};
+
 function App() {
+  const [currentPage, setCurrentPage] = useState<string>("main");
+
   return (
     <>
       <GlobalStyle />
       <Wrapper>
-        <Layout>
-          <Main />
+        <Layout
+          onChangePage={(page) => {
+            setCurrentPage(page);
+          }}
+        >
+          {pageInfo[currentPage] ? (
+            pageInfo[currentPage]
+          ) : (
+            <div className="empty-page">빈페이지</div>
+          )}
         </Layout>
       </Wrapper>
     </>

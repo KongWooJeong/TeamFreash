@@ -4,6 +4,10 @@ import styled from "styled-components";
 
 import logo from "../assets/logo_Teamfresh.png";
 
+interface Props {
+  onSelectPage: (page: string) => void;
+}
+
 const HeaderWrapper = styled.div`
   display: table;
   position: fixed;
@@ -81,11 +85,16 @@ const HeaderWrapper = styled.div`
   }
 `;
 
-const Header: React.FC = () => {
+const Header: React.FC<Props> = ({ onSelectPage }) => {
   return (
     <HeaderWrapper>
       <div className="header">
-        <div className="logo">
+        <div
+          className="logo"
+          onClick={() => {
+            onSelectPage("main");
+          }}
+        >
           <a>
             <img src={logo} />
           </a>
@@ -93,16 +102,49 @@ const Header: React.FC = () => {
         <div className="menu">
           <ul>
             <li>
-              <a>회사소개</a>
+              <a
+                onClick={() => {
+                  onSelectPage("");
+                }}
+              >
+                회사소개
+              </a>
             </li>
             <li>
-              <a>서비스소개</a>
+              <a
+                onClick={() => {
+                  onSelectPage("");
+                }}
+              >
+                서비스소개
+              </a>
             </li>
             <li>
-              <a>회사소개</a>
+              <a
+                onClick={() => {
+                  onSelectPage("");
+                }}
+              >
+                인재 채용
+              </a>
             </li>
             <li>
-              <a>고객지원</a>
+              <a
+                onClick={() => {
+                  onSelectPage("");
+                }}
+              >
+                고객지원
+              </a>
+            </li>
+            <li>
+              <a
+                onClick={() => {
+                  onSelectPage("deliveryAreaSearch");
+                }}
+              >
+                배송지역검색
+              </a>
             </li>
           </ul>
         </div>
