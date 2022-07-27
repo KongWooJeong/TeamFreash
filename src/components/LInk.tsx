@@ -29,6 +29,41 @@ const info: Info = {
   },
 };
 
+const Link: React.FC = () => {
+  const [selectedMenu, setSelectedMenu] = useState<string>("");
+
+  return (
+    <LinkWrapper>
+      <div className="link-container">
+        {Object.keys(info).map((value) => {
+          return (
+            <div
+              key={value}
+              className={
+                value === selectedMenu ? "contents active" : "contents"
+              }
+              onMouseOver={() => {
+                setSelectedMenu(value);
+              }}
+              onMouseOut={() => {
+                setSelectedMenu("");
+              }}
+            >
+              <div className="text">
+                <div className="title">{info[value].name}</div>
+                <div className="button">
+                  <img src={arrowicon} />
+                </div>
+              </div>
+              <img className="image" src={info[value].image} />
+            </div>
+          );
+        })}
+      </div>
+    </LinkWrapper>
+  );
+};
+
 const LinkWrapper = styled.div`
   position: relative;
   display: table;
@@ -128,40 +163,5 @@ const LinkWrapper = styled.div`
     }
   }
 `;
-
-const Link: React.FC = () => {
-  const [selectedMenu, setSelectedMenu] = useState<string>("");
-
-  return (
-    <LinkWrapper>
-      <div className="link-container">
-        {Object.keys(info).map((value) => {
-          return (
-            <div
-              key={value}
-              className={
-                value === selectedMenu ? "contents active" : "contents"
-              }
-              onMouseOver={() => {
-                setSelectedMenu(value);
-              }}
-              onMouseOut={() => {
-                setSelectedMenu("");
-              }}
-            >
-              <div className="text">
-                <div className="title">{info[value].name}</div>
-                <div className="button">
-                  <img src={arrowicon} />
-                </div>
-              </div>
-              <img className="image" src={info[value].image} />
-            </div>
-          );
-        })}
-      </div>
-    </LinkWrapper>
-  );
-};
 
 export default Link;

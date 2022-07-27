@@ -41,6 +41,56 @@ const pointInfo: Info = {
   },
 };
 
+const Point: React.FC = () => {
+  const [selectedItem, setSelectedItem] = useState<string>("tms");
+
+  return (
+    <PointWrapper>
+      <div className="point-container">
+        <div className="title">
+          <span>팀프레시를 이끄는 힘</span>
+          <br />
+          핵심역량
+        </div>
+        <div className="point-box">
+          {Object.keys(pointInfo).map((item) => {
+            return (
+              <div
+                key={item}
+                className={
+                  selectedItem === item ? "contents active" : "contents"
+                }
+                onMouseOver={() => {
+                  setSelectedItem(item);
+                }}
+              >
+                <div className="text">
+                  <div className="title">{pointInfo[item].title}</div>
+                  <div className="comments">
+                    {pointInfo[item].comments.map((value, index) => {
+                      if (index === pointInfo[item].comments.length - 1) {
+                        return value;
+                      }
+
+                      return (
+                        <Fragment key={value}>
+                          {value}
+                          <br />
+                        </Fragment>
+                      );
+                    })}
+                  </div>
+                </div>
+                <img src={pointInfo[item].image} />
+              </div>
+            );
+          })}
+        </div>
+      </div>
+    </PointWrapper>
+  );
+};
+
 const PointWrapper = styled.div`
   position: relative;
   display: table;
@@ -158,55 +208,5 @@ const PointWrapper = styled.div`
     }
   }
 `;
-
-const Point: React.FC = () => {
-  const [selectedItem, setSelectedItem] = useState<string>("tms");
-
-  return (
-    <PointWrapper>
-      <div className="point-container">
-        <div className="title">
-          <span>팀프레시를 이끄는 힘</span>
-          <br />
-          핵심역량
-        </div>
-        <div className="point-box">
-          {Object.keys(pointInfo).map((item) => {
-            return (
-              <div
-                key={item}
-                className={
-                  selectedItem === item ? "contents active" : "contents"
-                }
-                onMouseOver={() => {
-                  setSelectedItem(item);
-                }}
-              >
-                <div className="text">
-                  <div className="title">{pointInfo[item].title}</div>
-                  <div className="comments">
-                    {pointInfo[item].comments.map((value, index) => {
-                      if (index === pointInfo[item].comments.length - 1) {
-                        return value;
-                      }
-
-                      return (
-                        <Fragment key={value}>
-                          {value}
-                          <br />
-                        </Fragment>
-                      );
-                    })}
-                  </div>
-                </div>
-                <img src={pointInfo[item].image} />
-              </div>
-            );
-          })}
-        </div>
-      </div>
-    </PointWrapper>
-  );
-};
 
 export default Point;

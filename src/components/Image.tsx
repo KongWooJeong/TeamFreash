@@ -12,6 +12,74 @@ interface Test {
   currentIndex: number;
 }
 
+const Image: React.FC = () => {
+  const [activeIndex, setActiveIndex] = useState(0);
+
+  useEffect(() => {
+    const intervalId = setInterval(() => {
+      setActiveIndex((prevState) => {
+        if (prevState === imageList.length - 1) {
+          return 0;
+        }
+
+        return prevState + 1;
+      });
+    }, 3000);
+
+    return () => {
+      clearInterval(intervalId);
+    };
+  }, []);
+
+  function handleImageTabClick(index: number) {
+    setActiveIndex(index);
+  }
+
+  return (
+    <ImageWrapper>
+      <div className="image-text-wrapper">
+        <div className="image-title">
+          대한민국 No.1
+          <br />
+          Cold-chain platform
+        </div>
+        <div className="image-comment">
+          팀프레시는 신선함을 이어 풍요로운 세상을 만듭니다.
+        </div>
+      </div>
+      <CaroucelWrapper currentIndex={activeIndex}>
+        <div className="caroucel">
+          <div className="inner">
+            {imageList.map((value) => {
+              return (
+                <div key={value} className="caroucel-item">
+                  <img src={value} />
+                </div>
+              );
+            })}
+          </div>
+        </div>
+      </CaroucelWrapper>
+      <ul className="slide-page-index">
+        {imageList.map((value, index) => {
+          return (
+            <li key={value} className="item">
+              <a
+                className={activeIndex === index ? "active" : ""}
+                onClick={() => {
+                  handleImageTabClick(index);
+                }}
+              >
+                {index}
+              </a>
+            </li>
+          );
+        })}
+      </ul>
+    </ImageWrapper>
+  );
+};
+
 const ImageWrapper = styled.div`
   position: relative;
   width: 100%;
@@ -115,73 +183,5 @@ const CaroucelWrapper = styled.div<Test>`
     }
   }
 `;
-
-const Image: React.FC = () => {
-  const [activeIndex, setActiveIndex] = useState(0);
-
-  useEffect(() => {
-    const intervalId = setInterval(() => {
-      setActiveIndex((prevState) => {
-        if (prevState === imageList.length - 1) {
-          return 0;
-        }
-
-        return prevState + 1;
-      });
-    }, 3000);
-
-    return () => {
-      clearInterval(intervalId);
-    };
-  }, []);
-
-  function handleImageTabClick(index: number) {
-    setActiveIndex(index);
-  }
-
-  return (
-    <ImageWrapper>
-      <div className="image-text-wrapper">
-        <div className="image-title">
-          대한민국 No.1
-          <br />
-          Cold-chain platform
-        </div>
-        <div className="image-comment">
-          팀프레시는 신선함을 이어 풍요로운 세상을 만듭니다.
-        </div>
-      </div>
-      <CaroucelWrapper currentIndex={activeIndex}>
-        <div className="caroucel">
-          <div className="inner">
-            {imageList.map((value) => {
-              return (
-                <div key={value} className="caroucel-item">
-                  <img src={value} />
-                </div>
-              );
-            })}
-          </div>
-        </div>
-      </CaroucelWrapper>
-      <ul className="slide-page-index">
-        {imageList.map((value, index) => {
-          return (
-            <li key={value} className="item">
-              <a
-                className={activeIndex === index ? "active" : ""}
-                onClick={() => {
-                  handleImageTabClick(index);
-                }}
-              >
-                {index}
-              </a>
-            </li>
-          );
-        })}
-      </ul>
-    </ImageWrapper>
-  );
-};
 
 export default Image;

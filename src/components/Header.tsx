@@ -8,6 +8,74 @@ interface Props {
   onSelectPage: (page: string) => void;
 }
 
+const Header: React.FC<Props> = ({ onSelectPage }) => {
+  return (
+    <HeaderWrapper>
+      <div className="header">
+        <div
+          className="logo"
+          onClick={() => {
+            onSelectPage("main");
+          }}
+        >
+          <a>
+            <img src={logo} />
+          </a>
+        </div>
+        <div className="menu">
+          <ul>
+            <li>
+              <a
+                onClick={() => {
+                  onSelectPage("");
+                }}
+              >
+                회사소개
+              </a>
+            </li>
+            <li>
+              <a
+                onClick={() => {
+                  onSelectPage("");
+                }}
+              >
+                서비스소개
+              </a>
+            </li>
+            <li>
+              <a
+                onClick={() => {
+                  onSelectPage("");
+                }}
+              >
+                인재 채용
+              </a>
+            </li>
+            <li>
+              <a
+                onClick={() => {
+                  onSelectPage("");
+                }}
+              >
+                고객지원
+              </a>
+            </li>
+            <li>
+              <a
+                onClick={() => {
+                  onSelectPage("deliveryAreaSearch");
+                }}
+              >
+                배송지역검색
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </HeaderWrapper>
+  );
+};
+
 const HeaderWrapper = styled.div`
   display: table;
   position: fixed;
@@ -84,73 +152,5 @@ const HeaderWrapper = styled.div`
     }
   }
 `;
-
-const Header: React.FC<Props> = ({ onSelectPage }) => {
-  return (
-    <HeaderWrapper>
-      <div className="header">
-        <div
-          className="logo"
-          onClick={() => {
-            onSelectPage("main");
-          }}
-        >
-          <a>
-            <img src={logo} />
-          </a>
-        </div>
-        <div className="menu">
-          <ul>
-            <li>
-              <a
-                onClick={() => {
-                  onSelectPage("");
-                }}
-              >
-                회사소개
-              </a>
-            </li>
-            <li>
-              <a
-                onClick={() => {
-                  onSelectPage("");
-                }}
-              >
-                서비스소개
-              </a>
-            </li>
-            <li>
-              <a
-                onClick={() => {
-                  onSelectPage("");
-                }}
-              >
-                인재 채용
-              </a>
-            </li>
-            <li>
-              <a
-                onClick={() => {
-                  onSelectPage("");
-                }}
-              >
-                고객지원
-              </a>
-            </li>
-            <li>
-              <a
-                onClick={() => {
-                  onSelectPage("deliveryAreaSearch");
-                }}
-              >
-                배송지역검색
-              </a>
-            </li>
-          </ul>
-        </div>
-      </div>
-    </HeaderWrapper>
-  );
-};
 
 export default Header;

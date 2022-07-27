@@ -74,6 +74,84 @@ const businessInfo: Info = {
   },
 };
 
+const Service: React.FC = () => {
+  const [selectedBusiness, setSeletedBusiness] =
+    useState<string>("distribution");
+
+  function handleBusinessTabClick(businessType: string) {
+    setSeletedBusiness(businessType);
+  }
+
+  return (
+    <ServiceWrapper>
+      <div className="title">
+        <span>Serivce Introduction</span>
+        <br />
+        서비스 소개
+      </div>
+      <div className="service-tab-container">
+        <div className="service-tab">
+          <ul>
+            {Object.keys(businessInfo).map((value, index) => {
+              return (
+                <li
+                  key={index}
+                  className={selectedBusiness === value ? "on" : ""}
+                  onClick={() => handleBusinessTabClick(value)}
+                >
+                  <img src={businessInfo[value].icon} />
+                  {businessInfo[value].name}
+                </li>
+              );
+            })}
+          </ul>
+        </div>
+        <div className="service-contents">
+          <div className="text-box">
+            <div className="title">
+              {businessInfo[selectedBusiness].title.map((value, index) => {
+                if (index === businessInfo[selectedBusiness].title.length - 1) {
+                  return value;
+                }
+
+                return (
+                  <Fragment key={value}>
+                    {value}
+                    <br />
+                  </Fragment>
+                );
+              })}
+            </div>
+            <div className="comment">
+              {businessInfo[selectedBusiness].comment.map((value, index) => {
+                if (
+                  index ===
+                  businessInfo[selectedBusiness].comment.length - 1
+                ) {
+                  return value;
+                }
+
+                return (
+                  <Fragment key={value}>
+                    {value}
+                    <br />
+                  </Fragment>
+                );
+              })}
+            </div>
+            <div className="link">
+              <img src={arrowicon} />
+            </div>
+          </div>
+          <div className="image-box">
+            <img src={businessInfo[selectedBusiness].image} />
+          </div>
+        </div>
+      </div>
+    </ServiceWrapper>
+  );
+};
+
 const ServiceWrapper = styled.div`
   position: relative;
   display: table;
@@ -202,83 +280,5 @@ const ServiceWrapper = styled.div`
     }
   }
 `;
-
-const Service: React.FC = () => {
-  const [selectedBusiness, setSeletedBusiness] =
-    useState<string>("distribution");
-
-  function handleBusinessTabClick(businessType: string) {
-    setSeletedBusiness(businessType);
-  }
-
-  return (
-    <ServiceWrapper>
-      <div className="title">
-        <span>Serivce Introduction</span>
-        <br />
-        서비스 소개
-      </div>
-      <div className="service-tab-container">
-        <div className="service-tab">
-          <ul>
-            {Object.keys(businessInfo).map((value, index) => {
-              return (
-                <li
-                  key={index}
-                  className={selectedBusiness === value ? "on" : ""}
-                  onClick={() => handleBusinessTabClick(value)}
-                >
-                  <img src={businessInfo[value].icon} />
-                  {businessInfo[value].name}
-                </li>
-              );
-            })}
-          </ul>
-        </div>
-        <div className="service-contents">
-          <div className="text-box">
-            <div className="title">
-              {businessInfo[selectedBusiness].title.map((value, index) => {
-                if (index === businessInfo[selectedBusiness].title.length - 1) {
-                  return value;
-                }
-
-                return (
-                  <Fragment key={value}>
-                    {value}
-                    <br />
-                  </Fragment>
-                );
-              })}
-            </div>
-            <div className="comment">
-              {businessInfo[selectedBusiness].comment.map((value, index) => {
-                if (
-                  index ===
-                  businessInfo[selectedBusiness].comment.length - 1
-                ) {
-                  return value;
-                }
-
-                return (
-                  <Fragment key={value}>
-                    {value}
-                    <br />
-                  </Fragment>
-                );
-              })}
-            </div>
-            <div className="link">
-              <img src={arrowicon} />
-            </div>
-          </div>
-          <div className="image-box">
-            <img src={businessInfo[selectedBusiness].image} />
-          </div>
-        </div>
-      </div>
-    </ServiceWrapper>
-  );
-};
 
 export default Service;

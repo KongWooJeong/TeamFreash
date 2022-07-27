@@ -2,6 +2,16 @@ import React from "react";
 
 import styled from "styled-components";
 
+const Introduce: React.FC = () => {
+  return (
+    <IntroduceWrapper>
+      안전하고 신속하게 고객에 먹거리를 제공하고 있습니다.
+      <br />
+      국내 유일 Door to Door Cold Chain Service, 팀프레시를 만나보세요.
+    </IntroduceWrapper>
+  );
+};
+
 const IntroduceWrapper = styled.div`
   position: relative;
   display: table;
@@ -16,15 +26,5 @@ const IntroduceWrapper = styled.div`
   color: #000;
   overflow: hidden;
 `;
-
-const Introduce: React.FC = () => {
-  return (
-    <IntroduceWrapper>
-      안전하고 신속하게 고객에 먹거리를 제공하고 있습니다.
-      <br />
-      국내 유일 Door to Door Cold Chain Service, 팀프레시를 만나보세요.
-    </IntroduceWrapper>
-  );
-};
 
 export default Introduce;

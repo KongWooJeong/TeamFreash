@@ -5,6 +5,47 @@ import styled from "styled-components";
 import logo from "../assets/logo_w.png";
 import logoBrunch from "../assets/sns_brunch.png";
 
+const Footer: React.FC = () => {
+  return (
+    <FooterWrapper>
+      <div className="footer-container">
+        <div className="logo">
+          <img src={logo} />
+        </div>
+        <div className="companyinfo">
+          <ul>
+            <li>(주)팀프레시</li>
+            <li>사업자번호 561-88-01138</li>
+            <li>대표 이성일</li>
+            <li>서울특별시 송파구 위례성대로 12길 15-1</li>
+            <li>전화 02-423-0525</li>
+            <li>팩스 02-3432-0525</li>
+            <li>메일 info@timf.co.kr</li>
+            <li>영업 및 제휴 문의 sales@timf.co.kr</li>
+            <li>
+              Copyrightⓒ <a target="_blank">TeamFresh Co.,Ltd.</a> All Rights
+              Reserved.
+            </li>
+          </ul>
+        </div>
+        <div className="snslink">
+          <ul>
+            <li>
+              <i className="xi-facebook"></i>
+            </li>
+            <li>
+              <img src={logoBrunch} />
+            </li>
+            <li>
+              <i className="xi-youtube-play"></i>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </FooterWrapper>
+  );
+};
+
 const FooterWrapper = styled.div`
   display: table;
   width: 100%;
@@ -102,46 +143,5 @@ const FooterWrapper = styled.div`
     }
   }
 `;
-
-const Footer: React.FC = () => {
-  return (
-    <FooterWrapper>
-      <div className="footer-container">
-        <div className="logo">
-          <img src={logo} />
-        </div>
-        <div className="companyinfo">
-          <ul>
-            <li>(주)팀프레시</li>
-            <li>사업자번호 561-88-01138</li>
-            <li>대표 이성일</li>
-            <li>서울특별시 송파구 위례성대로 12길 15-1</li>
-            <li>전화 02-423-0525</li>
-            <li>팩스 02-3432-0525</li>
-            <li>메일 info@timf.co.kr</li>
-            <li>영업 및 제휴 문의 sales@timf.co.kr</li>
-            <li>
-              Copyrightⓒ <a target="_blank">TeamFresh Co.,Ltd.</a> All Rights
-              Reserved.
-            </li>
-          </ul>
-        </div>
-        <div className="snslink">
-          <ul>
-            <li>
-              <i className="xi-facebook"></i>
-            </li>
-            <li>
-              <img src={logoBrunch} />
-            </li>
-            <li>
-              <i className="xi-youtube-play"></i>
-            </li>
-          </ul>
-        </div>
-      </div>
-    </FooterWrapper>
-  );
-};
 
 export default Footer;

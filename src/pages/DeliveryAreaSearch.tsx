@@ -10,12 +10,6 @@ interface Info {
   fullAddress: string;
 }
 
-const DeliveryAreaSearchWrapper = styled.div`
-  width: 100%;
-  height: 100vh;
-  margin-top: 200px;
-`;
-
 const DeliveryAreaSearch: React.FC = () => {
   const [addressInfo, setAddreddInfo] = useState<Info>({
     zipCode: "",
@@ -61,5 +55,11 @@ const DeliveryAreaSearch: React.FC = () => {
     </DeliveryAreaSearchWrapper>
   );
 };
+
+const DeliveryAreaSearchWrapper = styled.div`
+  width: 100%;
+  height: 100vh;
+  margin-top: 200px;
+`;
 
 export default DeliveryAreaSearch;
