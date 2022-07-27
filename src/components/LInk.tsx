@@ -52,7 +52,7 @@ const Link: React.FC = () => {
               <div className="text">
                 <div className="title">{info[value].name}</div>
                 <div className="button">
-                  <img src={arrowicon} />
+                  <img src={arrowicon} alt="arrow" />
                 </div>
               </div>
               <img className="image" src={info[value].image} />

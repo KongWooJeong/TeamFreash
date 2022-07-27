@@ -8,14 +8,19 @@ import image03 from "../assets/main_images03.jpeg";
 
 const imageList = [image01, image02, image03];
 
-interface Test {
+interface CaroucelProps {
   currentIndex: number;
 }
 
 const Image: React.FC = () => {
-  const [activeIndex, setActiveIndex] = useState(0);
+  const [activeIndex, setActiveIndex] = useState<number>(0);
+  const [tabButtonClickCount, setTabButtonClickCount] = useState<number>(0);
 
   useEffect(() => {
+    if (!tabButtonClickCount) {
+      return;
+    }
+
     const intervalId = setInterval(() => {
       setActiveIndex((prevState) => {
         if (prevState === imageList.length - 1) {
@@ -29,10 +34,11 @@ const Image: React.FC = () => {
     return () => {
       clearInterval(intervalId);
     };
-  }, []);
+  }, [tabButtonClickCount]);
 
   function handleImageTabClick(index: number) {
     setActiveIndex(index);
+    setTabButtonClickCount(tabButtonClickCount + 1);
   }
 
   return (
@@ -53,7 +59,7 @@ const Image: React.FC = () => {
             {imageList.map((value) => {
               return (
                 <div key={value} className="caroucel-item">
-                  <img src={value} />
+                  <img src={value} alt="business" />
                 </div>
               );
             })}
@@ -159,7 +165,7 @@ const ImageWrapper = styled.div`
   }
 `;
 
-const CaroucelWrapper = styled.div<Test>`
+const CaroucelWrapper = styled.div<CaroucelProps>`
   .caroucel {
     overflow: hidden;
   }
@@ -167,7 +173,8 @@ const CaroucelWrapper = styled.div<Test>`
   .inner {
     white-space: nowrap;
     transition: transform 0.8s ease;
-    transform: ${(props: Test) => `translateX(${-100 * props.currentIndex}%)`};
+    transform: ${(props: CaroucelProps) =>
+      `translateX(${-100 * props.currentIndex}%)`};
   }
 
   .caroucel-item {

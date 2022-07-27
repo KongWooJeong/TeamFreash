@@ -48,7 +48,7 @@ const Header: React.FC<Props> = ({ onSelectPage }) => {
                   onSelectPage("");
                 }}
               >
-                인재 채용
+                인재채용
               </a>
             </li>
             <li>
